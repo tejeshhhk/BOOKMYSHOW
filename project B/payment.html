@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow - Payment Page</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+.payment-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #e50914;
+    font-size: 32px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+.payment-methods h2 {
+    font-size: 26px;
+    color: #e50914;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    text-align: left;
+    margin: 15px 0;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.payment-option label {
+    font-size: 18px;
+}
+
+.payment-option img {
+    margin-right: 10px;
+}
+
+.qr-code {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.qr-code img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.credit-card-form, .upi-form {
+    margin-top: 30px;
+    display: none;
+}
+
+.credit-card-form input, .upi-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.credit-card-form button, .upi-form button {
+    background-color: #e50914;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.credit-card-form button:hover, .upi-form button:hover {
+    background-color: #d40812;
+}
+
+.payment-confirmation {
+    display: none;
+    margin-top: 30px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.payment-confirmation h3 {
+    color: #e50914;
+}
+
+.payment-confirmation p {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .payment-container {
+        padding: 10px;
+    }
+
+    .payment-methods h2 {
+        font-size: 22px;
+    }
+
+    .payment-option label {
+        font-size: 16px;
+    }
+
+    .credit-card-form input, .upi-form input {
+        font-size: 16px;
+    }
+
+    .credit-card-form button, .upi-form button {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="payment-container">
+    <header>
+        <h1>BookMyShow - Payment</h1>
+        <p>Please complete your payment to confirm your booking.</p>
+    </header>
+
+    <div class="payment-methods">
+        <h2>Select Payment Method</h2>
+        
+        <div class="payment-option">
+            <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+            <label for="credit-card">
+                <img src="credit.png" alt="Visa" width="50px"> 
+                <img src="atm.webp" alt="MasterCard" width="50px">
+                Credit Card
+            </label>
+        </div>
+        
+        <div class="payment-option">
+            <input type="radio" id="upi" name="payment-method" value="upi">
+            <label for="upi">
+                <img src="upi.webp" alt="UPI" width="50px">
+                UPI
+            </label>
+        </div>
+        <div class="payment-option">
+            <input type="radio" id="online-payment" name="payment-method" value="online-payment">
+            <label for="online-payment">
+                <img src="online payment.webp" alt="PayPal" width="50px">
+                Online Payment (e.g., PayPal)
+            </label>
+        </div>
+
+        <div class="payment-option qr-code-option">
+            <input type="radio" id="qr-code" name="payment-method" value="qr-code">
+            <label for="qr-code">Pay via QR Code</label>
+            <div class="qr-code">
+                <img src="qr.png" alt="QR Code" width="100px">
+            </div>
+        </div>
+    </div>
+
+    <div class="credit-card-form" id="credit-card-form">
+        <h3>Enter Credit Card Details</h3>
+        <form>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="123" required>
+
+            <button type="button" onclick="processPayment()">Pay Now</button>
+        </form>
+    </div>
+
+    <div class="upi-form" id="upi-form">
+        <h3>Enter UPI ID</h3>
+        <form>
+            <label for="upi-id">UPI ID:</label>
+            <input type="text" id="upi-id" placeholder="example@upi" required>
+
+            <button type="button" onclick="processPayment()">Pay Now</button>
+        </form>
+    </div>
+
+    <div class="payment-confirmation" id="payment-confirmation">
+        <h3>Payment Successful</h3>
+        <p>Your booking is confirmed. Thank you for choosing BookMyShow!</p>
+    </div>
+
+</div>
+
+<script>
+    function showPaymentForm() {
+        var selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+        document.getElementById('credit-card-form').style.display = 'none';
+        document.getElementById('upi-form').style.display = 'none';
+        document.getElementById('payment-confirmation').style.display = 'none';
+
+        if (selectedPaymentMethod === 'credit-card') {
+            document.getElementById('credit-card-form').style.display = 'block';
+        } else if (selectedPaymentMethod === 'upi') {
+            document.getElementById('upi-form').style.display = 'block';
+        } else if (selectedPaymentMethod === 'qr-code') {
+            alert('Scan the QR Code to complete the payment.');
+        } else if (selectedPaymentMethod === 'online-payment') {
+            alert('Redirecting to online payment gateway...');
+        }
+    }
+
+    var paymentMethods = document.getElementsByName('payment-method');
+    paymentMethods.forEach(function(method) {
+        method.addEventListener('change', showPaymentForm);
+    });
+
+    function processPayment() {
+        alert("Processing your payment...");
+        document.getElementById('payment-confirmation').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

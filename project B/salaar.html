@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salaar - BookMyShow</title>
+     <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.movie-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.movie-trailer h1 {
+    font-size: 32px;
+    color: #e50914;
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    border-radius: 8px;
+}
+
+.movie-rating {
+    margin-top: 20px;
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.movie-rating h2 {
+    font-size: 28px;
+    color: #e50914;
+}
+
+.rating-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.rating {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.rate-button {
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.rate-button:hover {
+    background-color: #d40812;
+}
+
+
+.movie-description {
+    margin-top: 20px;
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.movie-description h3 {
+    font-size: 26px;
+    color: #e50914;
+}
+
+.movie-description p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.movie-cast-crew {
+    margin-top: 20px;
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.movie-cast-crew h3 {
+    font-size: 26px;
+    color: #e50914;
+}
+
+.movie-cast-crew ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.movie-cast-crew li {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.book-now-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.book-now-btn {
+    padding: 15px 30px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-now-btn:hover {
+    background-color: #d40812;
+}
+
+.book-now-btn:active {
+    background-color: #c20710;
+}
+
+@media (max-width: 768px) {
+    .movie-container {
+        padding: 15px;
+    }
+
+    .video-container iframe {
+        height: 300px;
+    }
+
+    .rating-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .rating {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .rate-button {
+        width: 100%;
+    }
+
+    .book-now-btn {
+        width: 100%;
+    }
+}
+
+     </style>
+</head>
+<body>
+
+<div class="movie-container">
+    
+    <div class="movie-trailer">
+        <h1>Salaar</h1>
+        <div class="video-container">
+            <iframe width="100%" height="500px" src="https://www.youtube.com/watch?v=bUR_FKt7Iso" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="movie-rating">
+        <h2>Rating</h2>
+        <div class="rating-container">
+            <span class="rating">8.7 / 10</span>
+            <button class="rate-button" onclick="rateMovie()">Rate This Movie</button>
+        </div>
+    </div>
+
+    <div class="movie-description">
+        <h3>Movie Description</h3>
+        <p>Salaar is an action-packed thriller directed by Prashanth Neel, starring Prabhas in the lead role. The film follows the journey of a man who must confront the dark underworld to protect his family. The movie is packed with intense action sequences and a gripping narrative that keeps the audience on the edge of their seat.</p>
+    </div>
+    <div class="movie-cast-crew">
+        <h3>Cast & Crew</h3>
+        <ul>
+            <li><strong>Director:</strong> Prashanth Neel</li>
+            <li><strong>Lead Actor:</strong> Prabhas</li>
+            <li><strong>Actor:</strong> Shruti Haasan</li>
+            <li><strong>Music:</strong> Ravi Basrur</li>
+            <li><strong>Producer:</strong> Vijay Kiragandur</li>
+        </ul>
+    </div>
+
+
+    <div class="book-now-container">
+        <a href="payment.html"><button class="book-now-btn" onclick="bookMovie()">Book Now</button></a>
+    </div>
+
+</div>
+
+<script>
+    function rateMovie() {
+        alert("Please select your rating for the movie Salaar!");
+    }
+
+    function bookMovie() {
+        alert("You are now redirected to the booking page!");
+        window.location.href = "https://www.bookmyshow.com";
+    }
+</script>
+
+</body>
+</html>
